@@ -1,0 +1,98 @@
+:root   {
+    --primaryColor: #371d5c;
+    --secondaryColor: #f4c371;
+    --tertiaryColor: #923267;
+    --fourthColor: #260e42;
+    --additionalColor: #a9dbce;
+    --accentColor: #e96aa1;
+    --accentColorOpague:rgba(233,106,161,0.8);
+    --secondYellow: #fec260;
+}
+
+body    {
+    padding: 0;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;;
+    background-color: var(--primaryColor);
+}
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25rem;
+    background-color: var(--secondYellow);
+}
+
+header a    {
+    text-decoration: none;
+    color: var(--tertiaryColor);
+    transition: all 0.3s ease-in
+}
+
+header a:hover   {
+    text-decoration: underline;
+    font-weight: lighter;
+}
+
+header div {
+    text-decoration: none;
+    color: var(--tertiaryColor);
+    padding: .5rem;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+section h1  {
+    font-size: 2rem;
+    padding-top: 2rem;
+    color: var(--additionalColor);
+    text-shadow: 4px 4px 5px rgba(0,0,0,0.3);
+    
+}
+.quizSpaceContainer  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 40rem;
+    height: 15rem;
+    background-color: #FFF;
+    border: 3px solid var(--additionalColor);
+    border-radius: 2.5rem;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+}
+
+.rules p    {
+    padding: 0.75rem 3rem;
+    font-size: 1.25rem;
+    position: relative;
+}
+
+#startBtn   {
+    padding: 1rem;
+    max-width: 8rem;
+    border-radius: .75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--primaryColor);
+    color: #FFF;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+    transition: all 0.4s ease-in-out;
+}
+#startBtn:hover   {
+    background-color: var(--additionalColor);
+    color: var(--primaryColor);
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+    transform: scale(1.25) rotate(360deg);
+}
