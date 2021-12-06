@@ -5,25 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">  
-    <title>Quizz It!</title>
+    <title>Quizzz It!</title>
 </head>
-<body>
+<!--Added honeyComb background image to body-->
+<body style="background-image: url(./assets/images/HoneyComb.png);">
     <header>
         <div><a href="#">View High Scores</a></div>
-        <div> Timer: 0</div>
+        <div><h1 class="titleHeading">Quizzz It!<img src="./assets/images/quizzItBee.png" class="bee"></h1></div>
+        <div> Timer: <span id="clock"> 60</span> </div>
     </header>
-    <section >
-        <h1>Coding Quiz Challenge</h1>
+    <section>
+        <h2>Coding Quiz Challenge</h2>
+        <!--This is the container that will hold -->
         <div class="quizSpaceContainer">
-            <div class="rules">
+            <div class="rules" id="rules">
             <p>
-               Try to answer the following JavaScript-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+               Try to answer the following JavaScript-related questions within the time limit. Every correct answer will earn you 10 points, but keep in mind that incorrect answers will penalize your time by 10 seconds! If you finsish with time to spare, the left over time will be added to your score!
             </p>
         </div>
-            <button id="startBtn">Start Quiz</button>
+        <!--This div is hidden but will be shown once the quiz starts. This is the area where the quiz questions will display-->
+            <div id="questions" class="hidden">
+                <h3 class="questionHeading" id="question"></h3>
+                <button id="option1" class="answers" onclick="getId(this)">Answer</button>
+                <button id="option2" class="answers" onclick="getId(this)">Answer</button>
+                <button id="option3" class="answers" onclick="getId(this)">Answer</button>
+                <button id="option4" class="answers" onclick="getId(this)">Answer</button>
+                <div class="statusArea">
+                    <div id="answerStatus" class="answerStatus">placeHolder</div>
+                    <div class="scoreStatus">SCORE: <span id="scoreBoard">0</span>
+                    </div>
+                </div>
+            </div>
+        
+            <button id="startBtn" class="startBtn">Start Quiz</button>
         </div>
-        
-        
-    </section>   
+    </section>
+    <script src="./assets/javascript/script.js"></script>   
 </body>
 </html>

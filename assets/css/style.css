@@ -1,3 +1,6 @@
+/*Imported font from Google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Cairo&family=Roboto:wght@300&family=Shalimar&display=swap');
+
 :root   {
     --primaryColor: #371d5c;
     --secondaryColor: #f4c371;
@@ -13,16 +16,17 @@ body    {
     padding: 0;
     margin: 0%;
     box-sizing: border-box;
-    font-family: Helvetica, Arial, sans-serif;;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
     background-color: var(--primaryColor);
 }
 
-
+/*Header styling*/
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 1.25rem;
+    color: var(--primaryColor);
     background-color: var(--secondYellow);
 }
 
@@ -43,17 +47,34 @@ header div {
     padding: .5rem;
 }
 
+.titleHeading   {
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+    padding: 0;
+    margin: 0;
+}
+
+.bee    {
+    filter: drop-shadow(5px 5px 5px var(--accentColor));
+    height: 50px;
+    width: 50px;
+    position: relative;
+    top: -0.75rem;
+    right: 1rem
+}
+
 section {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: center;    
 }
 
-section h1  {
+section h2  {
     font-size: 2rem;
     padding-top: 2rem;
     color: var(--additionalColor);
+    text-align: center;
     text-shadow: 4px 4px 5px rgba(0,0,0,0.3);
     
 }
@@ -63,12 +84,11 @@ section h1  {
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 40rem;
-    height: 15rem;
+    width: 90%;
     background-color: #FFF;
     border: 3px solid var(--additionalColor);
     border-radius: 2.5rem;
-    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.8);
 }
 
 .rules p    {
@@ -77,8 +97,9 @@ section h1  {
     position: relative;
 }
 
-#startBtn   {
+.startBtn   {
     padding: 1rem;
+    margin-bottom: 1rem;
     max-width: 8rem;
     border-radius: .75rem;
     font-size: 1rem;
@@ -90,9 +111,80 @@ section h1  {
     box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
     transition: all 0.4s ease-in-out;
 }
-#startBtn:hover   {
+.startBtn:hover   {
     background-color: var(--additionalColor);
     color: var(--primaryColor);
     box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
     transform: scale(1.25) rotate(360deg);
+}
+.hidden {
+    display: none;
+}
+
+/*This make the questions visible and styles the questions*/
+.makeVisible    {
+    display: block;
+}
+
+.questionHeading   {
+    font-size: 2rem;
+    font-weight: lighter;
+    color: var(--primaryColor);
+    text-align: left;
+    margin-left: 1rem;
+}
+/*Styling for answer button*/
+.answers {
+    display: block;
+    padding: 1rem;
+    min-width: 20rem;
+    margin-left: 1rem;
+    margin-bottom: .5rem;
+    border-radius: .75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+    background-color: var(--primaryColor);
+    color: #FFF;
+    transition: all 0.2s ease-in-out;
+}
+
+.answers:hover{
+    background-color: var(--secondYellow);
+    color: var(--primaryColor);
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+    transform: scale(1.25);
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+}
+
+/*stlying for status area*/
+.statusArea{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-top: 3px solid var(--additionalColor);
+}
+
+.answerStatus, .scoreStatus {
+    font-size: 1.5rem;
+    /* font-weight: lighter; */
+    color: var(--primaryColor);
+    text-align: left;
+    margin-left: 1rem;
+}
+
+/*media queries to change hearder*/
+@media screen and (max-width: 768px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.25rem;
+        background-color: var(--secondYellow);
+    }
 }
