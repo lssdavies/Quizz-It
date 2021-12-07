@@ -28,22 +28,24 @@ header {
     font-size: 1.25rem;
     color: var(--primaryColor);
     background-color: var(--secondYellow);
+
 }
 
 header a    {
     text-decoration: none;
-    color: var(--tertiaryColor);
-    transition: all 0.3s ease-in
+    font-weight: bold;
+    transition: all 0.3s ease-in;
+    padding: .5rem;
 }
 
 header a:hover   {
-    text-decoration: underline;
-    font-weight: lighter;
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+    font-weight: bold;
 }
 
-header div {
-    text-decoration: none;
-    color: var(--tertiaryColor);
+.score {
+    
+    font-weight: bold;
     padding: .5rem;
 }
 
@@ -54,7 +56,7 @@ header div {
 }
 
 .bee    {
-    filter: drop-shadow(5px 5px 5px var(--accentColor));
+    filter: drop-shadow(5px 5px 5px var(--primaryColor));
     height: 50px;
     width: 50px;
     position: relative;
@@ -100,7 +102,7 @@ section h2  {
 .startBtn   {
     padding: 1rem;
     margin-bottom: 1rem;
-    max-width: 8rem;
+    min-width: 8rem;
     border-radius: .75rem;
     font-size: 1rem;
     font-family: inherit;
@@ -114,6 +116,7 @@ section h2  {
 .startBtn:hover   {
     background-color: var(--additionalColor);
     color: var(--primaryColor);
+    font-weight: bold;
     box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
     transform: scale(1.25) rotate(360deg);
 }
@@ -124,11 +127,13 @@ section h2  {
 /*This make the questions visible and styles the questions*/
 .makeVisible    {
     display: block;
+    width: 90%;
 }
 
 .questionHeading   {
     font-size: 2rem;
     font-weight: lighter;
+    text-align: left;
     color: var(--primaryColor);
     text-align: left;
     margin-left: 1rem;
@@ -137,21 +142,21 @@ section h2  {
 .answers {
     display: block;
     padding: 1rem;
-    min-width: 15rem;
+    min-width: 16rem;
     margin-left: 1rem;
     margin-bottom: .5rem;
     border-radius: .75rem;
     font-size: 1rem;
     font-family: inherit;
     font-weight: bold;
-    text-align: left;
+    text-align: center;
     cursor: pointer;
     background-color: var(--primaryColor);
     color: #FFF;
     transition: all 0.2s ease-in-out;
 }
 
-.answers:hover{
+.answers:hover {
     background-color: var(--secondYellow);
     color: var(--primaryColor);
     box-shadow: 6px 6px 6px rgba(0,0,0,0.3);

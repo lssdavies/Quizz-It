@@ -6,6 +6,8 @@ var time = 60;
 var score = 0;
 //stores user button id to check answer
 var userAnswer = "";
+//stores index value to loop through quizQuestion
+var questionIndex = 0;
 
 //variables used to get html elements by id and store them
 var startButton = document.getElementById('startBtn');
@@ -16,8 +18,7 @@ var answerText1 = document.getElementById("option1");
 var answerText2 = document.getElementById("option2");
 var answerText3 = document.getElementById("option3");
 var answerText4 = document.getElementById("option4");
-var correctAnswer = document.getElementById("answerStatus");
-var wrongAnswer = document.getElementById("answerStatus");
+var answerStatus = document.getElementById("answerStatus");
 var scoreTotal = document.getElementById("scoreBoard");
 
 //array of 9 Objects to store questions for quiz
@@ -32,14 +33,14 @@ var quizQuestions= [
     },
     {
         question: "The condition in an if / else statement is enclosed within ",
-        option1: "Quotes",
-        option2: "Curly Brackets {}",
-        option3: "Parentheses ()",
-        option4: "Square Brackets []",
-        answer: "option3"
+        option1: "Parentheses",
+        option2: "Curly Brackets",
+        option3: "Quotes",
+        option4: "Square Brackets",
+        answer: "option1"
     },
     {
-        question: "Arrays in JavaScript can be used to store ",
+        question: "Arrays in JavaScript can be used to store ____ .",
         option1: "Numbers and strings",
         option2: "Other arrays",
         option3: "Booleans",
@@ -49,51 +50,43 @@ var quizQuestions= [
     {
         question: "String values must be enclosed within ____ when being assigned to variables.",
         option1: "Commas",
-        option2: "Parentheses",
-        option3: "Quotes",
+        option2: "Quotes",
+        option3: "Parentheses",
         option4: "Asterisks",
-        answer: "option3"
+        answer: "option2"
     },
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         option1: "JavaScript",
         option2: "Web API's",
-        option3: "for loops",
-        option4: "console.log()",
-        answer: "option4"
+        option3: "console.log( )",
+        option4: "for loops",
+        answer: "option3"
     },
     {
         question: "Which of these is NOT a valid way to declare a variable?",
-        option1: "var name = 'Fred'",
-        option2: "const color = 'Red'",
-        option3: "let i = 0",
-        option4: "variable x = 'y'",
-        answer: "option4"
+        option1: "variable x = y ",
+        option2: 'const color = "Red" ;',
+        option3: "let i = 0 ;",
+        option4: 'var name = "Fred" ;',
+        answer: "option1"
     },
     {
         question: "Which of the following is written in Camel Case?",
         option1: "OneTwoThree",
         option2: "racecaR",
-        option3: "HYPERTEXT",
-        option4: "animalNames",
-        answer: "option4"
-    },
-    {
-        question: "How do you wirte the condition for loop?",
-        option1: "for var i=0, i < 5, i++",
-        option2: "for var i=0; i < 5; i++",
-        option3: "for (var i=0; i < 5; i++)",
-        option4: "None of the above are for loops",
+        option3: "animalNames",
+        option4: "HYPERTEXT",
         answer: "option3"
     },
     {
-        question: "How do you link an external Javascript file to a webpage?",
-        option1: "<script src='script.js></script>",
-        option2: "<script href='script.js'/>",
-        option3: "<script>script.js</script>",
-        option4: "<link src='script.js'></link>",
-        answer: "option1"
-    }
+        question: "How do you wirte the condition for loop?",
+        option1: "for var i = 0, i < 5, i++ ;",
+        option2: "for (var i = 0; i < 5; i++) ;",
+        option3: "for var i = 0; i < 5; i++ ;",
+        option4: "None of the above are for loops",
+        answer: "option2"
+    },
 ]
 
 
@@ -108,42 +101,7 @@ var countdown = function() {
     }
 }
 
-//this function will get the users answer and store it in the variable userAnswer
-var getAnswer = function()    {
-    
-    //this functions checks which answer the user selected and checks if the answer is right or wrong
-    var answerSelected = function() {
-        userAnswer = this.id;
-        console.log(userAnswer);
-        if (userAnswer === quizQuestions[0].answer) {
-            correctAnswer.innerHTML = "Correct! <span class='right'>&#10004</span>";
-            score += 10;
-            scoreTotal.innerHTML = score;
-        }
-        else{
-            wrongAnswer.innerHTML = "Incorrect! <span class='wrong'>&#10006</span>";
-            time -= 10;
-        } 
-    }
-    document.getElementById("option1").onclick = answerSelected;
-    document.getElementById("option2").onclick = answerSelected;
-    document.getElementById("option3").onclick = answerSelected;
-    document.getElementById("option4").onclick = answerSelected;
-}
-
-// this function will cycle through the array of questions and load a questions on the page as long as there is time or another question available
-var displayQuestions = function ()  {
-    questionText.innerHTML = quizQuestions[0].question;
-    answerText1.innerHTML = quizQuestions[0].option1;
-    answerText2.innerHTML = quizQuestions[0].option2;
-    answerText3.innerHTML = quizQuestions[0].option3;
-    answerText4.innerHTML = quizQuestions[0].option4;
-    getAnswer();
-}
-
-
-
-var  startQuiz= function()  {
+var startQuiz= function()  {
     //The set interval runs countown every 1000 ms ie every second
     setInterval(countdown, 1000);
     //This hides the start message and start button by changing the css class name to hiddden.
@@ -157,3 +115,70 @@ var  startQuiz= function()  {
         
 //This links the start    
 startButton.addEventListener('click', startQuiz);
+
+
+// this function will load a question on the page based on the current value of questtionIndex
+function displayQuestions()  {
+    questionText.textContent = quizQuestions[questionIndex].question;
+    answerText1.textContent = quizQuestions[questionIndex].option1;
+    answerText2.textContent = quizQuestions[questionIndex].option2;
+    answerText3.textContent = quizQuestions[questionIndex].option3;
+    answerText4.textContent = quizQuestions[questionIndex].option4;
+    checkAnswers();
+    
+}
+
+//this function will get the users answer and store it in the variable userAnswer
+var checkAnswers = function()    {
+    
+    //this functions checks which answer the user selected and checks if the answer is right or wrong
+    var answerSelected = function() {
+        userAnswer = this.id;
+        console.log(userAnswer);
+        if (userAnswer === quizQuestions[questionIndex].answer) {
+            answerStatus.innerHTML = "Correct! <span class='right'>&#10004</span>";
+            setInterval(clearAnswerStatus, 500);
+            score += 10;
+            scoreTotal.innerHTML = score;
+            nextQuestion();
+        }
+        else{
+            answerStatus.innerHTML = "Incorrect! <span class='wrong'>&#10006</span>";
+            setInterval(clearAnswerStatus, 500);
+            time -= 10;
+            if (time <= 0) {
+                endQuiz();
+            }
+            nextQuestion();
+        } 
+    }
+    //this section tracks the button id that was clicked and passes answer to this.id(which is the clicked buttons id)
+    document.getElementById("option1").onclick = answerSelected;
+    document.getElementById("option2").onclick = answerSelected;
+    document.getElementById("option3").onclick = answerSelected;
+    document.getElementById("option4").onclick = answerSelected;
+    
+}
+/*This function calls the next question in trhe array, no loop needed since a loop technically exhist because the functions call eachother*/
+function nextQuestion() {
+    if (time > 0 || questionIndex < quizQuestions.length - 1)   {
+        console.log(questionIndex);
+        console.log(quizQuestions[questionIndex].answer);
+        displayQuestions();
+    }
+    if (time === 0 ||questionIndex === quizQuestions.length) {
+        endQuiz();
+    }
+}
+
+//this function resets answerStatus to be hidden
+function clearAnswerStatus()    {
+    answerStatus.innerHTML = "";
+}
+
+//this is the endQuiz function that will bring up the score summary screen
+function endQuiz()  {
+    
+}
+
+/*current state of the application: I am able to loop through the array quizquestions but the but get an undefine error at the end. I believe this is happening because as is the program's if statement is incrementing questionIndex++; one more time than it should. One the program is sorted I also need to add the div containers in the index file to store the score summary page.*/
