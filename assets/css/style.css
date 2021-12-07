@@ -135,15 +135,13 @@ section h2  {
     font-weight: lighter;
     text-align: left;
     color: var(--primaryColor);
-    text-align: left;
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
 }
 /*Styling for answer button*/
 .answers {
     display: block;
     padding: 1rem;
     min-width: 16rem;
-    margin-left: 1rem;
     margin-bottom: .5rem;
     border-radius: .75rem;
     font-size: 1rem;
@@ -195,10 +193,21 @@ section h2  {
 @media screen and (max-width: 768px) {
     header {
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: space-between;
         font-size: 1.25rem;
         background-color: var(--secondYellow);
+    }
+    .questionHeading   {
+        font-size: 2rem;
+        font-weight: lighter;
+        text-align: left;
+  }
+}
+@media screen and (max-width: 425px) {
+    .answers {
+        margin: 0 auto;
+        padding: 1rem;
+        margin-bottom: .5rem;
     }
 }
