@@ -20,6 +20,8 @@ var answerText3 = document.getElementById("option3");
 var answerText4 = document.getElementById("option4");
 var answerStatus = document.getElementById("answerStatus");
 var scoreTotal = document.getElementById("scoreBoard");
+var finalScore = document.getElementById("finalScore");
+var summary = document.getElementById("summary");
 
 //array of 9 Objects to store questions for quiz
 var quizQuestions= [
@@ -89,19 +91,21 @@ var quizQuestions= [
     },
 ]
 
-
-//Function to count down from 60 seconds
-var countdown = function() {
-    if (time > 0)   {
-        time -=1;
-        document.getElementById("clock").innerHTML = time;
-    }
-    else {
-        clearInterval(startQuiz);
-    }
-}
-
+//Start Quiz function
 var startQuiz= function()  {
+
+    //Function to count down from 60 seconds
+    var countdown = function() {
+        if (time > 0)   {
+            time--;
+            document.getElementById("clock").innerHTML = time;
+            console.log("boo!");
+        }
+        if (time === 0)  {
+            clearInterval(countdown);
+            endQuiz();
+        }
+    }
     //The set interval runs countown every 1000 ms ie every second
     setInterval(countdown, 1000);
     //This hides the start message and start button by changing the css class name to hiddden.
@@ -117,16 +121,22 @@ var startQuiz= function()  {
 startButton.addEventListener('click', startQuiz);
 
 
-// this function will load a question on the page based on the current value of questtionIndex
+// this function will load a question on the page based on the current value of questtionIndex. It checks if there is time or questions left other wise it will end the quiz.
 function displayQuestions()  {
-    questionText.textContent = quizQuestions[questionIndex].question;
-    answerText1.textContent = quizQuestions[questionIndex].option1;
-    answerText2.textContent = quizQuestions[questionIndex].option2;
-    answerText3.textContent = quizQuestions[questionIndex].option3;
-    answerText4.textContent = quizQuestions[questionIndex].option4;
-    checkAnswers();
+        
+        if (time <= 0 || questionIndex === quizQuestions.length) {
+        endQuiz();
+        }
+        else {
+        questionText.textContent = quizQuestions[questionIndex].question;
+        answerText1.textContent = quizQuestions[questionIndex].option1;
+        answerText2.textContent = quizQuestions[questionIndex].option2;
+        answerText3.textContent = quizQuestions[questionIndex].option3;
+        answerText4.textContent = quizQuestions[questionIndex].option4;
+        checkAnswers();
+        }
+    }
     
-}
 
 //this function will get the users answer and store it in the variable userAnswer
 var checkAnswers = function()    {
@@ -135,21 +145,23 @@ var checkAnswers = function()    {
     var answerSelected = function() {
         userAnswer = this.id;
         console.log(userAnswer);
+        console.log(questionIndex);
+        console.log(time);
         if (userAnswer === quizQuestions[questionIndex].answer) {
             answerStatus.innerHTML = "Correct! <span class='right'>&#10004</span>";
             setInterval(clearAnswerStatus, 500);
             score += 10;
             scoreTotal.innerHTML = score;
-            nextQuestion();
-        }
-        else{
+            questionIndex++;
+            displayQuestions();
+            }
+         else{
             answerStatus.innerHTML = "Incorrect! <span class='wrong'>&#10006</span>";
             setInterval(clearAnswerStatus, 500);
             time -= 10;
-            if (time <= 0) {
-                endQuiz();
-            }
-            nextQuestion();
+            questionIndex++;
+            displayQuestions();
+            
         } 
     }
     //this section tracks the button id that was clicked and passes answer to this.id(which is the clicked buttons id)
@@ -159,17 +171,6 @@ var checkAnswers = function()    {
     document.getElementById("option4").onclick = answerSelected;
     
 }
-/*This function calls the next question in trhe array, no loop needed since a loop technically exhist because the functions call eachother*/
-function nextQuestion() {
-    if (time > 0 || questionIndex < quizQuestions.length - 1)   {
-        console.log(questionIndex);
-        console.log(quizQuestions[questionIndex].answer);
-        displayQuestions();
-    }
-    if (time === 0 ||questionIndex === quizQuestions.length) {
-        endQuiz();
-    }
-}
 
 //this function resets answerStatus to be hidden
 function clearAnswerStatus()    {
@@ -178,7 +179,19 @@ function clearAnswerStatus()    {
 
 //this is the endQuiz function that will bring up the score summary screen
 function endQuiz()  {
-    
+    //clearInterval(countdown);
+    questions.className = "hidden";
+    summary.className = "makeVisible";
+    if (score > 0)  {
+    score = score + time;
+    }
+    else {
+        score = 0;
+    }
+    finalScore.innerHTML = score;
+    //time = 0;
+    document.getElementById("clock").innerHTML = time;
+    console.log("I ran and ended the quiz and i have added time to the score or made the score 0 if there wasn't any time left");
 }
 
-/*current state of the application: I am able to loop through the array quizquestions but the but get an undefine error at the end. I believe this is happening because as is the program's if statement is incrementing questionIndex++; one more time than it should. One the program is sorted I also need to add the div containers in the index file to store the score summary page.*/
+/*Current state of script: can not get endQuiz to run once timer gets to zero, user has to click an answer to trigger endQuiz. if wrong answers make timer <= 0 endQuiz will run or if quizquestions.length === quizindex endquiz will run. Cannot trigger endquiz when timer runs out.*/
