@@ -189,6 +189,59 @@ section h2  {
     text-shadow: 3px 3px 4px rgba(0,0,0,0.3);
 }
 
+/* Score Summary page styling*/
+.scoreHeading   {
+    font-size: 2rem;
+    font-weight: lighter;
+    color: var(--primaryColor);
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form input  {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #FFF;
+    border: 3px solid var(--additionalColor);
+    /* border-radius: 2.5rem; */
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.8);
+    font-size: 1rem;
+}
+.form p {
+    position: relative;
+    top: 0.15rem;
+    padding-top: px;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    color: var(--primaryColor); 
+}
+.submitBtn   {
+    position: relative;
+    top: 0.15rem;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    min-width: 7rem;
+    border-radius: .75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--primaryColor);
+    color: #FFF;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+    transition: all 0.4s ease-in-out;
+}
+.submitBtn:hover   {
+    background-color: var(--additionalColor);
+    color: var(--primaryColor);
+    font-weight: bold;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+    transform: scale(1.25) rotate(360deg);
+}
+
 /*media queries to change hearder*/
 @media screen and (min-width: 768px) {
     header {
@@ -202,7 +255,11 @@ section h2  {
         font-size: 2rem;
         font-weight: lighter;
         text-align: left;
-  }
+   }
+   .submitBtn   {
+       min-width: 4rem;
+   }
+
 }
 @media screen and (max-width: 425px) {
     header {
@@ -237,4 +294,5 @@ section h2  {
             padding: 1rem;
             margin-bottom: .5rem;
         }
+  
 }

@@ -18,7 +18,7 @@
         <h2>Coding Quiz Challenge</h2>
         <!--This is the container that will hold -->
         <div class="quizSpaceContainer">
-            <div class="rules" id="rules">
+            <div class="rules hidden" id="rules">
             <p>
                Try to answer the following JavaScript-related questions within the time limit. Every correct answer will earn you 10 points, but keep in mind that incorrect answers will penalize your time by 10 seconds! If you finsish with time to spare, the left over time will be added to your score!
             </p>
@@ -36,13 +36,18 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden" id="summary">
-                <div><h3  class="questionHeading">Congratulations!</h3></div>
-                <div class="scoreBoard">Your Score is <span class="scoreBoard" id="finalScore">0</span></div>
+            <div class="makeVisible" id="summary">
+                <div><h3  class="scoreHeading">Congratulations! You Scored  <span class="scoreBoard" id="finalScore">0</span> points.</h3></div>
+                <div class="form">
+                    <p>Enter your Initials: <input type="text" id="initials" max="4">
+                    <button id="submitBtn" class="submitBtn">Submit</button>
+                </p>
+                </div>
+                
     
             </div>
         
-            <button id="startBtn" class="startBtn">Start Quiz</button>
+            <button id="startBtn" class="startBtn hidden">Start Quiz</button>
         </div>
         
     </section>

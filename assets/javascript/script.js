@@ -91,23 +91,30 @@ var quizQuestions= [
     },
 ]
 
-//Start Quiz function
-var startQuiz= function()  {
+//This function is the timer for the quiz
+var quizTimer = function()  {
 
-    //Function to count down from 60 seconds
-    var countdown = function() {
-        if (time > 0)   {
-            time--;
-            document.getElementById("clock").innerHTML = time;
-            console.log("boo!");
-        }
-        if (time === 0)  {
-            clearInterval(countdown);
-            endQuiz();
-        }
+//Function to count down from 60 seconds
+var countdown = function() {
+    if (time > 0)   {
+        time--;
+        document.getElementById("clock").innerHTML = time;
+        
+    }
+    if (time === 0)  {
+        endQuiz();
+        clearInterval(timer);
+        
+    }
     }
     //The set interval runs countown every 1000 ms ie every second
-    setInterval(countdown, 1000);
+    var timer = setInterval(countdown, 1000);
+}
+
+
+//Start Quiz function
+var startQuiz= function()  {
+    quizTimer();
     //This hides the start message and start button by changing the css class name to hiddden.
     startMessage.className = "hidden";
     startButton.className = "hidden";
@@ -179,7 +186,7 @@ function clearAnswerStatus()    {
 
 //this is the endQuiz function that will bring up the score summary screen
 function endQuiz()  {
-    //clearInterval(countdown);
+    //clearInterval(quizTimer);
     questions.className = "hidden";
     summary.className = "makeVisible";
     if (score > 0)  {
@@ -189,9 +196,9 @@ function endQuiz()  {
         score = 0;
     }
     finalScore.innerHTML = score;
-    //time = 0;
+    time = 0;
     document.getElementById("clock").innerHTML = time;
     console.log("I ran and ended the quiz and i have added time to the score or made the score 0 if there wasn't any time left");
 }
 
-/*Current state of script: can not get endQuiz to run once timer gets to zero, user has to click an answer to trigger endQuiz. if wrong answers make timer <= 0 endQuiz will run or if quizquestions.length === quizindex endquiz will run. Cannot trigger endquiz when timer runs out.*/
+/*Current state of script: once timer hits 0 or questions are completed endQuiz triggers but the clear interval doesnt stop the running in the background*/
