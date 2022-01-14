@@ -63,13 +63,17 @@ header a:hover   {
     top: -0.75rem;
     right: 1rem
 }
+.scoresTitle    {
+   margin: 0 auto;
+}
 
 section {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
+    margin: 0 auto;    
 }
 
 section h2  {
@@ -80,7 +84,7 @@ section h2  {
     text-shadow: 4px 4px 5px rgba(0,0,0,0.3);
     
 }
-.quizSpaceContainer  {
+.quizSpaceContainer, .scoreSheetContainer  {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,7 +134,7 @@ section h2  {
     width: 90%;
 }
 
-.questionHeading   {
+.questionHeading, .scoreSheet   {
     font-size: 2rem;
     font-weight: lighter;
     text-align: left;
@@ -261,6 +265,22 @@ section h2  {
     font-weight: bold;
     box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
 }
+
+/*Styling for list of scores*/
+.scoreList  {
+    font-size: 1.5rem;
+    padding: .5rem;
+    min-width: 40%;
+    font-weight: lighter;
+    color: var(--primaryColor);
+}
+ol li:nth-child(odd)    {
+    background-color: var(--secondaryColor);
+}
+ol li:nth-child(even)    {
+    background-color: var(--additionalColor);
+}
+
 /*media queries to change hearder*/
 @media screen and (min-width: 768px) {
     header {

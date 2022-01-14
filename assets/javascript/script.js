@@ -8,7 +8,6 @@ var score = 0;
 var userAnswer = "";
 //stores index value to loop through quizQuestion
 var questionIndex = 0;
-//
 
 //variables used to get html elements by id and store them
 var startButton = document.getElementById('startBtn');
@@ -199,15 +198,27 @@ function endQuiz()  {
 
 //capture score and user initials
 function userInitials() {
+   event.preventDefault();
+   //captures form input
    var initials = document.getElementById("initials").value;
-   var mainList = [];
-   var scoreList = 
-       { initials: initials,
-          score: score
-        };
+     // make sure value wasn't empty
+  if (initials !== "") {
+    /*checks local storage for previous scores, if empty mainList is initialized as an empty array*/
+    var mainList =
+      JSON.parse(window.localStorage.getItem("mainList")) || [];
+
+    //form data is stored as an object and pushed to local storage
+    var scoreList = {
+      initials: initials,
+      score: score
+    };
     mainList.push(scoreList);
-    localStorage.setItem("initial", JSON.stringify(mainList));
+    localStorage.setItem("mainList", JSON.stringify(mainList));
     window.location.href = "scores.html";
+  }
+  else  {
+      alert("Enter Initals");
+  }
 }
 submitButton.addEventListener('click', userInitials);
 
