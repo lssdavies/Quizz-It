@@ -103,9 +103,9 @@ var countdown = function() {
         document.getElementById("clock").innerHTML = time;
         
     }
-    if (time === 0)  {
-        endQuiz();
+    if (time <= 0 || questionIndex === quizQuestions.length)  {
         clearInterval(timer);
+        endQuiz();
         
     }
     }
@@ -133,10 +133,7 @@ startButton.addEventListener('click', startQuiz);
 // this function will load a question on the page based on the current value of questtionIndex. It checks if there is time or questions left other wise it will end the quiz.
 function displayQuestions()  {
         
-        if (time <= 0 || questionIndex === quizQuestions.length) {
-        endQuiz();
-        }
-        else {
+        if (questionIndex < quizQuestions.length)    {
         questionText.textContent = quizQuestions[questionIndex].question;
         answerText1.textContent = quizQuestions[questionIndex].option1;
         answerText2.textContent = quizQuestions[questionIndex].option2;
@@ -145,9 +142,6 @@ function displayQuestions()  {
         checkAnswers();
         }
     }
-    
-
-
 //this function will get the users answer and store it in the variable userAnswer
 var checkAnswers = function()    {
     
@@ -199,8 +193,7 @@ function endQuiz()  {
         score = 0;
     }
     finalScore.innerHTML = score;
-    time = 0;
-    document.getElementById("clock").innerHTML = time;
+    document.getElementById("clock").innerHTML = "0";
     console.log("I ran and ended the quiz and i have added time to the score or made the score 0 if there wasn't any time left");
 }
 
