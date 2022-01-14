@@ -5,6 +5,10 @@ var scoreSheet = document.getElementById('scoreSheet');
 //This function loads the scores onto the scores page, if there are no scores mainList is an emptu array
 var loadScores = function()  {
     var mainList = JSON.parse(localStorage.getItem("mainList")) || [];
+    /*sorting the scores from highest to lowest using sort method. The function is passed 2 parameters and we assign the score to each parameter an perform a math operator to sort in decending order highest to lowest score*/
+    mainList.sort(function(a,b) {
+        return b.score - a.score;
+    });
     
     mainList.forEach(function(playerScores)  {
         var listEl = document.createElement('li');
@@ -28,15 +32,3 @@ var clearScore = function() {
 play.addEventListener('click', playAgain);
 clear.addEventListener('click', clearScore);
 loadScores();
-
-
- //for loop to generate li items for scores stored in local storage
-    // for (var i = 0; i < mainList.length; i++)   {
-    //     var listEl = document.createElement('li');
-    //     console.log()
-    //     listEl.className = '';
-    //     console.log(mainList.length);
-    //     console.log(mainList);
-    //     console.log(mainList[1]);
-    //     listEl.textContent = mainList['initials'] + ' - ';
-    //}
