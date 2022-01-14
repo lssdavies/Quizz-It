@@ -241,7 +241,26 @@ section h2  {
     box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
     transform: scale(1.25) rotate(360deg);
 }
-
+.scoreBtn    {
+    padding: .75rem;
+    margin: 0.5rem 1rem;
+    min-width: 8rem;
+    border-radius: .75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--primaryColor);
+    color: #FFF;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+    
+}
+.scoreBtn:hover   {
+    background-color: var(--additionalColor);
+    color: var(--primaryColor);
+    font-weight: bold;
+    box-shadow: 6px 6px 6px rgba(0,0,0,0.3);
+}
 /*media queries to change hearder*/
 @media screen and (min-width: 768px) {
     header {

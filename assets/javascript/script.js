@@ -8,6 +8,7 @@ var score = 0;
 var userAnswer = "";
 //stores index value to loop through quizQuestion
 var questionIndex = 0;
+//
 
 //variables used to get html elements by id and store them
 var startButton = document.getElementById('startBtn');
@@ -22,6 +23,7 @@ var answerStatus = document.getElementById("answerStatus");
 var scoreTotal = document.getElementById("scoreBoard");
 var finalScore = document.getElementById("finalScore");
 var summary = document.getElementById("summary");
+var submitButton = document.getElementById('submitBtn');
 
 //array of 9 Objects to store questions for quiz
 var quizQuestions= [
@@ -145,6 +147,7 @@ function displayQuestions()  {
     }
     
 
+
 //this function will get the users answer and store it in the variable userAnswer
 var checkAnswers = function()    {
     
@@ -201,4 +204,17 @@ function endQuiz()  {
     console.log("I ran and ended the quiz and i have added time to the score or made the score 0 if there wasn't any time left");
 }
 
-/*Current state of script: once timer hits 0 or questions are completed endQuiz triggers but the clear interval doesnt stop the running in the background*/
+//capture score and user initials
+function userInitials() {
+   var initials = document.getElementById("initials").value;
+   var mainList = [];
+   var scoreList = 
+       { initials: initials,
+          score: score
+        };
+    mainList.push(scoreList);
+    localStorage.setItem("initial", JSON.stringify(mainList));
+    window.location.href = "scores.html";
+}
+submitButton.addEventListener('click', userInitials);
+
